@@ -81,7 +81,7 @@ GRLIB_blacklisted_from_arsenal = [
 ] + blacklisted_bag + blacklisted_weapon;
 
 // Default LRX whitelist
-GRLIB_whitelisted_from_arsenal = [mobile_respawn_bag, "B_Parachute"] + whitelisted_from_arsenal;
+GRLIB_whitelisted_from_arsenal = [mobile_respawn_bag, "B_Parachute", "murshun_cigs_cig0"] + whitelisted_from_arsenal;
 
 // Default Personal Arsenal
 private _default_personal_arsenal = [
