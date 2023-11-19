@@ -1,8 +1,8 @@
 // Add SOG Weapons
 GRLIB_MOD_signature = GRLIB_MOD_signature + ["vn_"];
 
-private _exclude = "vn_o";
-if (GRLIB_mod_west == "SOG_VIETCONG") then { _exclude = "vn_b" };
+private _exclude = "vn_o_";
+if (GRLIB_mod_west == "SOG_VIETCONG") then { _exclude = "vn_b_" };
 
 // Weapons + Equipements (uniforme, etc..)
 (
@@ -41,11 +41,8 @@ if (GRLIB_mod_west == "SOG_VIETCONG") then { _exclude = "vn_b" };
 (
 	"
 	getNumber (_x >> 'scope') > 1 &&
-	(getNumber (_x >> 'type') == 256 || (getText (_x >> 'type') find '256') >= 0) &&
-	tolower (configName _x) find '_tracer' < 0 &&
 	tolower ((configName _x) select [0,3]) == 'vn_' &&
 	!([_exclude, (configName _x), true] call F_startsWith) &&
-	tolower (configName _x) find '_t_mag' < 0 &&
 	([(configName _x)] call is_allowed_item)
 	"
 	configClasses (configfile >> "CfgMagazines")
