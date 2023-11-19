@@ -9,8 +9,10 @@ while { true } do {
     {
         _static = _x;
   
+        private _canDamage = isDamageAllowed _static;
+
         // No damage
-        if (isDamageAllowed _static) then {
+        if (_canDamage) then {
             _static allowDamage false;
         };
 
@@ -24,6 +26,11 @@ while { true } do {
         if (getPosATL _static select 2 < -0.02) then {
             _static setpos (getpos _static);
             sleep 1;
+        };
+
+        // Turn damage back on
+        if (_canDamage) then {
+            _static allowDamage true;
         };
 
         sleep 0.5;

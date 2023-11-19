@@ -8,8 +8,10 @@ while { true } do {
         _static = _x;
         _static_class = typeOf _static;
 
+        private _canDamage = isDamageAllowed _static;
+
         // No damage
-        if (isDamageAllowed _static) then {
+        if (_canDamage) then {
             _static allowDamage false;
         };
 
@@ -68,6 +70,11 @@ while { true } do {
             if !(isNull _gunner) then {
                 [_gunner] spawn F_getNearestEnemy;
             };
+        };
+
+        // Turn damage back on
+        if (_canDamage) then {
+            _static allowDamage true;
         };
 
         sleep 0.5;
