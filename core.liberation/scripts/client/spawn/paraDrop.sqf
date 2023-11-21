@@ -15,9 +15,15 @@ sleep 3;
 _unit allowDamage true;
 halojumping = false;
 
-while {!isTouchingGround _unit} do {
-	sleep 1;
-};
+if(!isPlayer _unit) then {
+	_unit allowDamage false;
+	removeBackpack _unit;
+	waitUntil {sleep 0.1; getPosATL  _unit select 2 < 120};
+	_unit addBackpack "b_parachute";
+	_unit action ["openParachute"];
+}
+
+waitUntil {sleep 0.1; isTouchingGround _unit or (!alive _unit)};
 
 if ( _backpack != "" && _backpack != "B_Parachute" ) then {
 	_unit addBackpack _backpack;
@@ -27,5 +33,9 @@ if ( _backpack != "" && _backpack != "B_Parachute" ) then {
 		(backpackContainer _unit) setVariable ["GRLIB_mobile_respawn_bag", true, true];
 	};
 };
+
+if(!isPlayer _unit) then {
+	_unit allowDamage true;
+}
 
 _unit doFollow player;
